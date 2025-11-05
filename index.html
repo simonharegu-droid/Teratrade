@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TerraTrade | Crypto Trading Reimagined</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+    <script defer src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script defer src="assets/js/main.js"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-container">
+        <a href="#" class="logo">TerraTrade</a>
+        <nav class="site-nav" aria-label="Main navigation">
+          <button class="nav-toggle" aria-expanded="false" aria-controls="primary-menu">
+            <span class="sr-only">Toggle navigation</span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+          <ul id="primary-menu" class="nav-links">
+            <li><a href="#markets">Markets</a></li>
+            <li><a href="#trade">Trade</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#academy">Academy</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+        <div class="cta-buttons">
+          <a href="#" class="btn ghost">Log in</a>
+          <a href="#trade" class="btn primary">Start trading</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container hero-content">
+          <div class="hero-text">
+            <p class="eyebrow">Reinventing digital asset trading</p>
+            <h1>Trade crypto confidently with TerraTrade</h1>
+            <p>
+              Access institutional-grade liquidity, ultra-fast execution, and
+              intelligent risk controls. TerraTrade combines cutting-edge tools
+              with human-centered design to help traders of every level win in
+              the crypto markets.
+            </p>
+            <div class="hero-actions">
+              <a href="#trade" class="btn primary">Launch web terminal</a>
+              <a href="#academy" class="btn ghost">Explore the academy</a>
+            </div>
+            <ul class="hero-stats">
+              <li>
+                <span class="stat">120+</span>
+                <span class="label">Spot &amp; derivatives pairs</span>
+              </li>
+              <li>
+                <span class="stat">30 ms</span>
+                <span class="label">Average order execution</span>
+              </li>
+              <li>
+                <span class="stat">24/7</span>
+                <span class="label">Support from crypto specialists</span>
+              </li>
+            </ul>
+          </div>
+          <div class="hero-card" aria-label="Account growth">
+            <h2>Portfolio snapshot</h2>
+            <div class="portfolio-balance">
+              <span class="balance-label">Total balance</span>
+              <span class="balance-value" id="portfolioBalance">$125,430.27</span>
+            </div>
+            <div class="balance-change">
+              <span class="badge positive">+4.8% today</span>
+              <span class="subtle">$5,732 realized P&amp;L</span>
+            </div>
+            <div class="chart-container">
+              <canvas id="portfolioChart" aria-label="Portfolio performance"></canvas>
+            </div>
+            <dl class="positions">
+              <div>
+                <dt>BTC/USDT</dt>
+                <dd>+2.4% • 1.25 BTC</dd>
+              </div>
+              <div>
+                <dt>ETH/USDT</dt>
+                <dd>+1.2% • 18.7 ETH</dd>
+              </div>
+              <div>
+                <dt>SOL/USDT</dt>
+                <dd>-0.8% • 950 SOL</dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <section id="markets" class="section markets">
+        <div class="container">
+          <div class="section-header">
+            <h2>Market pulse</h2>
+            <p>Track top crypto assets in real time.</p>
+          </div>
+          <div class="market-table-wrapper">
+            <table class="market-table">
+              <thead>
+                <tr>
+                  <th scope="col">Asset</th>
+                  <th scope="col">Last price</th>
+                  <th scope="col">24h change</th>
+                  <th scope="col">Volume</th>
+                  <th scope="col">Status</th>
+                </tr>
+              </thead>
+              <tbody id="marketRows"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section id="trade" class="section trade-terminal">
+        <div class="container trade-grid">
+          <div class="terminal-card">
+            <h2>Trade instantly</h2>
+            <p class="subtle">
+              Place market, limit, or stop orders with real-time previews and
+              advanced risk management.
+            </p>
+            <form class="trade-form" aria-label="Trading ticket">
+              <label class="field">
+                <span>Trading pair</span>
+                <select id="pairSelect">
+                  <option value="BTC/USDT">BTC/USDT</option>
+                  <option value="ETH/USDT">ETH/USDT</option>
+                  <option value="SOL/USDT">SOL/USDT</option>
+                  <option value="AVAX/USDT">AVAX/USDT</option>
+                </select>
+              </label>
+              <label class="field">
+                <span>Order type</span>
+                <div class="segmented-control" role="radiogroup" aria-label="Order type">
+                  <button type="button" class="active" data-order-type="Market">Market</button>
+                  <button type="button" data-order-type="Limit">Limit</button>
+                  <button type="button" data-order-type="Stop">Stop</button>
+                </div>
+              </label>
+              <div class="form-row">
+                <label class="field">
+                  <span>Price</span>
+                  <input type="number" id="priceInput" placeholder="Market" />
+                </label>
+                <label class="field">
+                  <span>Amount</span>
+                  <input type="number" id="amountInput" placeholder="0.00" />
+                </label>
+              </div>
+              <label class="field">
+                <span>Leverage</span>
+                <input type="range" id="leverageInput" min="1" max="20" value="5" />
+                <div class="range-value"><span id="leverageValue">5x</span></div>
+              </label>
+              <div class="form-row">
+                <div class="order-summary">
+                  <span>Estimated cost</span>
+                  <strong id="estimatedCost">$0.00</strong>
+                </div>
+                <div class="order-summary">
+                  <span>Estimated P&amp;L</span>
+                  <strong id="estimatedPnL">$0.00</strong>
+                </div>
+              </div>
+              <div class="form-row">
+                <button type="button" class="btn primary" id="buyButton">Buy</button>
+                <button type="button" class="btn danger" id="sellButton">Sell</button>
+              </div>
+              <p class="order-feedback" id="orderFeedback" role="status" aria-live="polite"></p>
+            </form>
+          </div>
+          <div class="terminal-card orderbook">
+            <h2>Depth snapshot</h2>
+            <div class="orderbook-columns">
+              <div>
+                <h3>Bids</h3>
+                <ul id="bidList" class="orderbook-list"></ul>
+              </div>
+              <div>
+                <h3>Asks</h3>
+                <ul id="askList" class="orderbook-list"></ul>
+              </div>
+            </div>
+            <p class="subtle">Synthetic order book data updates every 5 seconds.</p>
+          </div>
+          <div class="terminal-card news">
+            <h2>Market insights</h2>
+            <ul class="news-feed" id="newsFeed"></ul>
+            <a class="btn ghost" href="#academy">See all updates</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="features" class="section features">
+        <div class="container">
+          <div class="section-header centered">
+            <h2>Everything you need to trade smarter</h2>
+            <p>
+              TerraTrade brings professional-grade infrastructure to every
+              investor. Explore the tools powering the next generation of crypto
+              finance.
+            </p>
+          </div>
+          <div class="feature-grid">
+            <article class="feature-card">
+              <div class="icon" aria-hidden="true">⚡</div>
+              <h3>Lightning execution</h3>
+              <p>
+                Enjoy industry-leading matching speeds and co-located servers for
+                consistent order fills even in volatile markets.
+              </p>
+            </article>
+            <article class="feature-card">
+              <div class="icon" aria-hidden="true">🔒</div>
+              <h3>Security-first custody</h3>
+              <p>
+                98% of client funds are held in multi-sig cold storage with
+                real-time monitoring and insurance coverage.
+              </p>
+            </article>
+            <article class="feature-card">
+              <div class="icon" aria-hidden="true">🤖</div>
+              <h3>Algorithmic automation</h3>
+              <p>
+                Deploy bots and strategies via our API suite with sandbox testing
+                and back-testing built into the platform.
+              </p>
+            </article>
+            <article class="feature-card">
+              <div class="icon" aria-hidden="true">📊</div>
+              <h3>Deep analytics</h3>
+              <p>
+                Monitor portfolio performance with customizable dashboards,
+                alerts, and institutional reporting tools.
+              </p>
+            </article>
+            <article class="feature-card">
+              <div class="icon" aria-hidden="true">🌐</div>
+              <h3>Global liquidity</h3>
+              <p>
+                Access aggregated liquidity across major venues and OTC desks for
+                the best possible pricing.
+              </p>
+            </article>
+            <article class="feature-card">
+              <div class="icon" aria-hidden="true">🛡️</div>
+              <h3>Regulatory alignment</h3>
+              <p>
+                TerraTrade is licensed in 12 jurisdictions with transparent
+                compliance and risk reporting.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="pricing" class="section pricing">
+        <div class="container">
+          <div class="section-header centered">
+            <h2>Pricing designed for every trader</h2>
+            <p>Transparent fees and volume-based tiers with no hidden costs.</p>
+          </div>
+          <div class="pricing-grid">
+            <article class="pricing-card">
+              <h3>Starter</h3>
+              <p class="price">0.20% maker / 0.30% taker</p>
+              <ul>
+                <li>Up to $50k monthly volume</li>
+                <li>Spot &amp; simple derivatives</li>
+                <li>Built-in risk controls</li>
+                <li>Email support</li>
+              </ul>
+              <a href="#" class="btn ghost">Get started</a>
+            </article>
+            <article class="pricing-card popular">
+              <div class="badge">Popular</div>
+              <h3>Pro</h3>
+              <p class="price">0.08% maker / 0.18% taker</p>
+              <ul>
+                <li>$50k - $5M monthly volume</li>
+                <li>Advanced derivatives &amp; options</li>
+                <li>Priority support &amp; VIP desk</li>
+                <li>API &amp; algo tooling</li>
+              </ul>
+              <a href="#" class="btn primary">Upgrade</a>
+            </article>
+            <article class="pricing-card">
+              <h3>Institutional</h3>
+              <p class="price">Custom</p>
+              <ul>
+                <li>$5M+ monthly volume</li>
+                <li>Dedicated account manager</li>
+                <li>Liquidity provisioning</li>
+                <li>Prime brokerage services</li>
+              </ul>
+              <a href="#contact" class="btn ghost">Talk to us</a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="academy" class="section academy">
+        <div class="container academy-grid">
+          <div>
+            <h2>TerraTrade Academy</h2>
+            <p>
+              Accelerate your trading journey with structured courses, live
+              strategy sessions, and market intelligence curated by experts.
+            </p>
+            <ul class="checklist">
+              <li>Interactive fundamentals course for crypto newcomers</li>
+              <li>Weekly pro trader broadcasts and office hours</li>
+              <li>Downloadable strategy templates and risk calculators</li>
+              <li>Community of 40k+ traders sharing insights</li>
+            </ul>
+            <a href="#" class="btn primary">View curriculum</a>
+          </div>
+          <div class="academy-card">
+            <h3>Upcoming sessions</h3>
+            <ul>
+              <li>
+                <span>Apr 18</span>
+                <strong>Mastering on-chain analytics</strong>
+                <p>Live workshop with data scientist Ava Singh</p>
+              </li>
+              <li>
+                <span>Apr 23</span>
+                <strong>Options hedging deep dive</strong>
+                <p>Derivatives lab with quant strategist Lucas Park</p>
+              </li>
+              <li>
+                <span>Apr 28</span>
+                <strong>Automation masterclass</strong>
+                <p>Build bots with TerraTrade's strategy studio</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section testimonials">
+        <div class="container">
+          <div class="section-header centered">
+            <h2>Trusted by traders worldwide</h2>
+            <p>From crypto-native funds to retail traders, thousands rely on TerraTrade.</p>
+          </div>
+          <div class="testimonial-grid">
+            <figure class="testimonial-card">
+              <blockquote>
+                “TerraTrade's execution speed and risk tools helped our desk hit a
+                12% performance boost during peak volatility.”
+              </blockquote>
+              <figcaption>
+                <strong>Mara Collins</strong>
+                <span>Head of Trading, Quantum Arc Fund</span>
+              </figcaption>
+            </figure>
+            <figure class="testimonial-card">
+              <blockquote>
+                “The academy resources are unmatched. I went from novice to
+                consistently profitable in under six months.”
+              </blockquote>
+              <figcaption>
+                <strong>Diego Ramirez</strong>
+                <span>Community trader</span>
+              </figcaption>
+            </figure>
+            <figure class="testimonial-card">
+              <blockquote>
+                “Regulatory clarity and dedicated support made TerraTrade the
+                obvious choice for our institutional expansion.”
+              </blockquote>
+              <figcaption>
+                <strong>Lin Chen</strong>
+                <span>COO, Nexus Digital Assets</span>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="section blog">
+        <div class="container">
+          <div class="section-header">
+            <h2>Latest from TerraTrade Research</h2>
+            <a href="#" class="link">View all insights</a>
+          </div>
+          <div class="blog-grid">
+            <article class="blog-card">
+              <span class="badge">Insights</span>
+              <h3>Macro trends shaping crypto liquidity in 2024</h3>
+              <p>
+                Discover how global rate shifts and institutional adoption are
+                influencing order book depth across major assets.
+              </p>
+              <a href="#" class="link">Read analysis</a>
+            </article>
+            <article class="blog-card">
+              <span class="badge">Playbook</span>
+              <h3>Designing delta-neutral strategies for volatile markets</h3>
+              <p>
+                Use TerraTrade's automation suite to build and deploy hedged
+                strategies with transparent performance tracking.
+              </p>
+              <a href="#" class="link">Read guide</a>
+            </article>
+            <article class="blog-card">
+              <span class="badge">Community</span>
+              <h3>How the Atlas Trading Collective scaled to 8 countries</h3>
+              <p>
+                Learn how a global team leverages TerraTrade to maintain
+                compliance and speed in new regions.
+              </p>
+              <a href="#" class="link">Read story</a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section cta" aria-labelledby="ready-to-build">
+        <div class="container cta-container">
+          <div>
+            <h2 id="ready-to-build">Ready to build your edge?</h2>
+            <p>
+              Create a free account to unlock the TerraTrade terminal, mobile
+              app, and API suite. Upgrade anytime as your volume grows.
+            </p>
+          </div>
+          <a href="#trade" class="btn primary">Create your account</a>
+        </div>
+      </section>
+
+      <section id="contact" class="section contact">
+        <div class="container contact-grid">
+          <div>
+            <h2>Contact TerraTrade</h2>
+            <p>
+              Whether you're exploring a strategic partnership or need help with
+              onboarding, our specialist team is here to help.
+            </p>
+            <ul class="contact-list">
+              <li>
+                <span>Email</span>
+                <a href="mailto:support@terratra.de">support@terratra.de</a>
+              </li>
+              <li>
+                <span>Enterprise</span>
+                <a href="mailto:institutions@terratra.de">institutions@terratra.de</a>
+              </li>
+              <li>
+                <span>Address</span>
+                <p>505 Innovation Way, Suite 800, Singapore</p>
+              </li>
+            </ul>
+          </div>
+          <form class="contact-form">
+            <label class="field">
+              <span>Name</span>
+              <input type="text" name="name" placeholder="Your name" required />
+            </label>
+            <label class="field">
+              <span>Email</span>
+              <input type="email" name="email" placeholder="you@example.com" required />
+            </label>
+            <label class="field">
+              <span>Company</span>
+              <input type="text" name="company" placeholder="Company name" />
+            </label>
+            <label class="field">
+              <span>Message</span>
+              <textarea name="message" rows="4" placeholder="How can we help?" required></textarea>
+            </label>
+            <label class="field checkbox">
+              <input type="checkbox" name="subscribe" />
+              <span>Subscribe me to TerraTrade intelligence briefings</span>
+            </label>
+            <button type="submit" class="btn primary">Submit inquiry</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div>
+          <a href="#" class="logo">TerraTrade</a>
+          <p>
+            TerraTrade is a next-generation digital asset exchange delivering
+            secure, compliant, and high-performance trading experiences across
+            spot, derivatives, and OTC markets.
+          </p>
+        </div>
+        <div>
+          <h3>Products</h3>
+          <ul>
+            <li><a href="#trade">Web terminal</a></li>
+            <li><a href="#academy">Academy</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#">API access</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Company</h3>
+          <ul>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Press</a></li>
+            <li><a href="#">Legal</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Stay updated</h3>
+          <form class="footer-form">
+            <label class="sr-only" for="newsletterEmail">Email</label>
+            <input type="email" id="newsletterEmail" placeholder="Email address" />
+            <button type="submit" class="btn primary">Join</button>
+          </form>
+          <div class="social-links" aria-label="Social media">
+            <a href="#" aria-label="Follow on Twitter">Twitter</a>
+            <a href="#" aria-label="Follow on LinkedIn">LinkedIn</a>
+            <a href="#" aria-label="Follow on YouTube">YouTube</a>
+          </div>
+        </div>
+      </div>
+      <div class="container footer-bottom">
+        <p>© <span id="currentYear"></span> TerraTrade. All rights reserved.</p>
+        <div class="footer-links">
+          <a href="#">Terms</a>
+          <a href="#">Privacy</a>
+          <a href="#">Cookie policy</a>
+        </div>
+      </div>
+    </footer>
+
+    <div class="toast" id="toast" role="alert" aria-live="assertive"></div>
+  </body>
+</html>
