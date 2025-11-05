@@ -1,0 +1,21 @@
+{
+  "meta": {
+    "title": "TerraTrade | Crypto Trading Reimagined"
+  },
+  "hero": {
+    "eyebrow": "Reinventing digital asset trading",
+    "headline": "Trade crypto confidently with TerraTrade",
+    "description": "Access institutional-grade liquidity, ultra-fast execution, and intelligent risk controls. TerraTrade combines cutting-edge tools with human-centered design to help traders of every level win in the crypto markets.",
+    "primaryCtaLabel": "Launch web terminal",
+    "primaryCtaHref": "#trade",
+    "secondaryCtaLabel": "Explore the academy",
+    "secondaryCtaHref": "#academy"
+  },
+  "contact": {
+    "headline": "Contact TerraTrade",
+    "description": "Whether you're exploring a strategic partnership or need help with onboarding, our specialist team is here to help.",
+    "supportEmail": "support@terratra.de",
+    "enterpriseEmail": "institutions@terratra.de",
+    "address": "505 Innovation Way, Suite 800, Singapore"
+  }
+}
