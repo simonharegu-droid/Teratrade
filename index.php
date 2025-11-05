@@ -1,9 +1,46 @@
+<?php
+declare(strict_types=1);
+
+require __DIR__ . '/includes/content.php';
+
+$content = load_site_content();
+$meta = $content['meta'] ?? [];
+$hero = $content['hero'] ?? [];
+$contact = $content['contact'] ?? [];
+
+function e(string $value): string
+{
+    return htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
+}
+
+function value(array $data, string $key, string $default = ''): string
+{
+    $raw = $data[$key] ?? $default;
+
+    return is_string($raw) ? $raw : $default;
+}
+
+$pageTitle = value($meta, 'title', 'TerraTrade | Crypto Trading Reimagined');
+$heroEyebrow = value($hero, 'eyebrow', 'Reinventing digital asset trading');
+$heroHeadline = value($hero, 'headline', 'Trade crypto confidently with TerraTrade');
+$heroDescription = value($hero, 'description', 'Access institutional-grade liquidity, ultra-fast execution, and intelligent risk controls. TerraTrade combines cutting-edge tools with human-centered design to help traders of every level win in the crypto markets.');
+$heroPrimaryCtaLabel = value($hero, 'primaryCtaLabel', 'Launch web terminal');
+$heroPrimaryCtaHref = value($hero, 'primaryCtaHref', '#trade');
+$heroSecondaryCtaLabel = value($hero, 'secondaryCtaLabel', 'Explore the academy');
+$heroSecondaryCtaHref = value($hero, 'secondaryCtaHref', '#academy');
+
+$contactHeadline = value($contact, 'headline', 'Contact TerraTrade');
+$contactDescription = value($contact, 'description', "Whether you're exploring a strategic partnership or need help with onboarding, our specialist team is here to help.");
+$contactSupportEmail = value($contact, 'supportEmail', 'support@terratra.de');
+$contactEnterpriseEmail = value($contact, 'enterpriseEmail', 'institutions@terratra.de');
+$contactAddress = value($contact, 'address', '505 Innovation Way, Suite 800, Singapore');
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TerraTrade | Crypto Trading Reimagined</title>
+    <title><?= e($pageTitle) ?></title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -45,17 +82,12 @@
       <section class="hero">
         <div class="container hero-content">
           <div class="hero-text">
-            <p class="eyebrow">Reinventing digital asset trading</p>
-            <h1>Trade crypto confidently with TerraTrade</h1>
-            <p>
-              Access institutional-grade liquidity, ultra-fast execution, and
-              intelligent risk controls. TerraTrade combines cutting-edge tools
-              with human-centered design to help traders of every level win in
-              the crypto markets.
-            </p>
+            <p class="eyebrow"><?= e($heroEyebrow) ?></p>
+            <h1><?= e($heroHeadline) ?></h1>
+            <p><?= e($heroDescription) ?></p>
             <div class="hero-actions">
-              <a href="#trade" class="btn primary">Launch web terminal</a>
-              <a href="#academy" class="btn ghost">Explore the academy</a>
+              <a href="<?= e($heroPrimaryCtaHref) ?>" class="btn primary"><?= e($heroPrimaryCtaLabel) ?></a>
+              <a href="<?= e($heroSecondaryCtaHref) ?>" class="btn ghost"><?= e($heroSecondaryCtaLabel) ?></a>
             </div>
             <ul class="hero-stats">
               <li>
@@ -448,23 +480,20 @@
       <section id="contact" class="section contact">
         <div class="container contact-grid">
           <div>
-            <h2>Contact TerraTrade</h2>
-            <p>
-              Whether you're exploring a strategic partnership or need help with
-              onboarding, our specialist team is here to help.
-            </p>
+            <h2><?= e($contactHeadline) ?></h2>
+            <p><?= e($contactDescription) ?></p>
             <ul class="contact-list">
               <li>
                 <span>Email</span>
-                <a href="mailto:support@terratra.de">support@terratra.de</a>
+                <a href="mailto:<?= e($contactSupportEmail) ?>"><?= e($contactSupportEmail) ?></a>
               </li>
               <li>
                 <span>Enterprise</span>
-                <a href="mailto:institutions@terratra.de">institutions@terratra.de</a>
+                <a href="mailto:<?= e($contactEnterpriseEmail) ?>"><?= e($contactEnterpriseEmail) ?></a>
               </li>
               <li>
                 <span>Address</span>
-                <p>505 Innovation Way, Suite 800, Singapore</p>
+                <p><?= e($contactAddress) ?></p>
               </li>
             </ul>
           </div>
